@@ -1,0 +1,40 @@
+# ============================
+# Backend (Java / Spring Boot)
+# ============================
+/backend/target/
+/backend/.idea/
+/backend/.classpath
+/backend/.project
+/backend/.settings/
+/backend/*.iml
+/backend/.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+
+# ============================
+# Frontend (Angular)
+# ============================
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.angular/
+/frontend/.idea/
+/frontend/*.iml
+
+# ============================
+# Geral (SO / Editor)
+# ============================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# VS Code
+.vscode/
+
+# ============================
+# Docker
+# ============================
+/db_data/
