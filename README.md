@@ -8,7 +8,7 @@ Permite abertura de solicitações por cidadãos, atribuição a funcionários e
 
 ## Tecnologias
 
-- **Backend:** Java 17, Spring Boot 3, Spring Data JPA, Bean Validation, OpenAPI/Swagger  
+- **Backend:** Java 17, Spring Boot 3.55, Spring Data JPA, Bean Validation, OpenAPI/Swagger  
 - **Frontend:** Angular 17, TypeScript, RxJS, Ngx-Charts (ou Chart.js)  
 - **Banco de Dados:** PostgreSQL (via Docker)  
 - **Build:** Maven, Node.js  
@@ -28,7 +28,6 @@ desafio-pleno-prodabel-java-angular/
 │ ├── src/app/...
 │ └── package.json
 │
-├── docker-compose.yml
 ├── .gitignore
 └── README.md
 
@@ -41,8 +40,8 @@ desafio-pleno-prodabel-java-angular/
 - [Java 17+](https://adoptium.net/)  
 - [Maven 3.9+](https://maven.apache.org/)  
 - [Node.js 20+](https://nodejs.org/)  
-- [Angular CLI](https://angular.dev/tools/cli)  
-- [Docker](https://docs.docker.com/get-docker/)  
+- [Angular CLI 17](https://angular.dev/tools/cli)
+- [PostgreSQL 15](https://www.postgresql.org/download) 
 
 ---
 
