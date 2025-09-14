@@ -2,6 +2,7 @@ package com.prodabel.desafiopleno.service;
 
 import com.prodabel.desafiopleno.model.Usuario;
 import com.prodabel.desafiopleno.repository.UsuarioRepository;
+import com.prodabel.desafiopleno.exception.EmailJaCadastradoException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,9 @@ public class UsuarioService {
     }
 
     public Usuario criar(Usuario usuario) {
+        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+            throw new EmailJaCadastradoException("E-mail já cadastrado.");
+        }
         return usuarioRepository.save(usuario);
     }
 

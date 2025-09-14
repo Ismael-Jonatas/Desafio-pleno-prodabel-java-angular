@@ -2,5 +2,9 @@ package com.prodabel.desafiopleno.repository;
 
 import com.prodabel.desafiopleno.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {}
+import java.util.Optional;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    Optional<Usuario> findByEmail(String email);
+}
 

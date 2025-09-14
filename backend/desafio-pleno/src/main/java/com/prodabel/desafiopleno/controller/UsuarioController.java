@@ -1,5 +1,6 @@
 package com.prodabel.desafiopleno.controller;
 
+import com.prodabel.desafiopleno.dto.UsuarioRequest;
 import com.prodabel.desafiopleno.model.Usuario;
 import com.prodabel.desafiopleno.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -29,8 +30,8 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario criar(@Valid @RequestBody Usuario usuario) {
-        return usuarioService.criar(usuario);
+    public Usuario criar(@Valid @RequestBody UsuarioRequest usuarioRequest) {
+        return usuarioService.criar(usuarioRequest.toUsuario());
     }
 
     @PutMapping("/{id}")
