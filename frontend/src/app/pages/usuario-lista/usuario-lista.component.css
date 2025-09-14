@@ -1,0 +1,4 @@
+.card { max-width: 680px; margin: 2rem auto; padding: 1.5rem; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .75rem; border-bottom: 1px solid #e5e7eb; text-align: left; }
+th { background: #f1f5f9; }
