@@ -1,9 +1,11 @@
 package com.prodabel.desafiopleno.service;
 
+import com.prodabel.desafiopleno.dto.UsuarioRequest;
 import com.prodabel.desafiopleno.model.Usuario;
 import com.prodabel.desafiopleno.repository.UsuarioRepository;
-import com.prodabel.desafiopleno.exception.EmailJaCadastradoException;
+import com.prodabel.desafiopleno.exception.EmailException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,13 +27,26 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
 
-    public Usuario criar(Usuario usuario) {
+    private Usuario toUsuario(UsuarioRequest usuarioRequest) {
+        Usuario usuario = new Usuario();
+        usuario.setNome(usuarioRequest.nome());
+        usuario.setEmail(usuarioRequest.email());
+        usuario.setBairro(usuarioRequest.bairro());
+        return usuario;
+    }
+
+    @Transactional
+    public Usuario criar(UsuarioRequest usuarioRequest) {
+
+        Usuario usuario = toUsuario(usuarioRequest);
+
         if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
-            throw new EmailJaCadastradoException("E-mail já cadastrado.");
+            throw new EmailException("E-mail já cadastrado.");
         }
         return usuarioRepository.save(usuario);
     }
 
+    @Transactional
     public Optional<Usuario> atualizar(Long id, Usuario usuarioAtualizado) {
         return usuarioRepository.findById(id).map(usuario -> {
             usuario.setNome(usuarioAtualizado.getNome());
@@ -41,6 +56,7 @@ public class UsuarioService {
         });
     }
 
+    @Transactional
     public boolean deletar(Long id) {
         if (usuarioRepository.existsById(id)) {
             usuarioRepository.deleteById(id);

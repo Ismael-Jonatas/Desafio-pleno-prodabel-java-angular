@@ -31,7 +31,7 @@ public class UsuarioController {
 
     @PostMapping
     public Usuario criar(@Valid @RequestBody UsuarioRequest usuarioRequest) {
-        return usuarioService.criar(usuarioRequest.toUsuario());
+        return usuarioService.criar(usuarioRequest);
     }
 
     @PutMapping("/{id}")

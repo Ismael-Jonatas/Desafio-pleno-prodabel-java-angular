@@ -3,6 +3,7 @@ package com.prodabel.desafiopleno.service;
 import com.prodabel.desafiopleno.model.Funcionario;
 import com.prodabel.desafiopleno.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,10 +25,12 @@ public class FuncionarioService {
         return funcionarioRepository.findById(id);
     }
 
+    @Transactional
     public Funcionario criar(Funcionario funcionario) {
         return funcionarioRepository.save(funcionario);
     }
 
+    @Transactional
     public Optional<Funcionario> atualizar(Long id, Funcionario funcionarioAtualizado) {
         return funcionarioRepository.findById(id).map(funcionario -> {
             funcionario.setNome(funcionarioAtualizado.getNome());
@@ -36,6 +39,7 @@ public class FuncionarioService {
         });
     }
 
+    @Transactional
     public boolean deletar(Long id) {
         if (funcionarioRepository.existsById(id)) {
             funcionarioRepository.deleteById(id);

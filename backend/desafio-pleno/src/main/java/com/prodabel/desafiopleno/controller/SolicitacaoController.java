@@ -1,11 +1,13 @@
 package com.prodabel.desafiopleno.controller;
 
+import com.prodabel.desafiopleno.dto.SolicitacaoNovaRequest;
 import com.prodabel.desafiopleno.model.Solicitacao;
 import com.prodabel.desafiopleno.service.SolicitacaoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.prodabel.desafiopleno.dto.SolicitacaoResponse;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class SolicitacaoController {
     private final SolicitacaoService solicitacaoService;
 
     @GetMapping
-    public List<Solicitacao> listar() {
+    public List<SolicitacaoResponse> listar() {
         return solicitacaoService.listar();
     }
 
@@ -29,8 +31,8 @@ public class SolicitacaoController {
     }
 
     @PostMapping
-    public Solicitacao criar(@Valid @RequestBody Solicitacao solicitacao) {
-        return solicitacaoService.criar(solicitacao);
+    public Solicitacao criar(@Valid @RequestBody SolicitacaoNovaRequest solicitacaoNovaRequest) {
+        return solicitacaoService.criar(solicitacaoNovaRequest);
     }
 
     @PutMapping("/{id}")
