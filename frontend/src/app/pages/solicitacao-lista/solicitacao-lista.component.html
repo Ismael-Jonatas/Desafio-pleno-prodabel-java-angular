@@ -1,35 +1,64 @@
-<div class="card">
+<mat-card>
   <h2>Solicitações</h2>
+
   @if (solicitacoes$ | async; as solicitacoes) {
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Título</th>
-          <th>Descrição</th>
-          <th>Bairro</th>
-          <th>Nome do Solicitante</th>
-          <th>E-mail do Solicitante</th>
-          <th>Funcionário Responsável</th>
-          <th>Data da Solicitação</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (s of solicitacoes; track s) {
-          <tr>
-            <td>{{ s.id }}</td>
-            <td>{{ s.titulo }}</td>
-            <td>{{ s.descricao }}</td>
-            <td>{{ s.bairro }}</td>
-            <td>{{ s.nomeSolicitante }}</td>
-            <td>{{ s.emailUsuario }}</td>
-            <td>{{ s.funcionarioResponsavel }}</td>
-            <td>{{ s.dataSolicitacao }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table mat-table [dataSource]="solicitacoes" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let s">{{ s.id }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="titulo">
+          <th mat-header-cell *matHeaderCellDef>Título</th>
+          <td mat-cell *matCellDef="let s">{{ s.titulo }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="descricao">
+          <th mat-header-cell *matHeaderCellDef>Descrição</th>
+          <td mat-cell *matCellDef="let s">{{ s.descricao }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="bairro">
+          <th mat-header-cell *matHeaderCellDef>Bairro</th>
+          <td mat-cell *matCellDef="let s">{{ s.bairro }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="nomeSolicitante">
+          <th mat-header-cell *matHeaderCellDef>Nome do Solicitante</th>
+          <td mat-cell *matCellDef="let s">{{ s.nomeSolicitante }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="emailUsuario">
+          <th mat-header-cell *matHeaderCellDef>E-mail</th>
+          <td mat-cell *matCellDef="let s">{{ s.emailUsuario }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="funcionarioResponsavel">
+          <th mat-header-cell *matHeaderCellDef>Funcionário</th>
+          <td mat-cell *matCellDef="let s">{{ s.funcionarioResponsavel }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="dataSolicitacao">
+          <th mat-header-cell *matHeaderCellDef>Data</th>
+          <td mat-cell *matCellDef="let s">{{ s.dataSolicitacao | date:'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
   } @else {
     Carregando...
   }
-</div>
+</mat-card>

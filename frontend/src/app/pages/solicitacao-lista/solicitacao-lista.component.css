@@ -1,4 +1,51 @@
-.card { max-width: 900px; margin: 2rem auto; padding: 1.5rem; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: .75rem; border-bottom: 1px solid #e5e7eb; text-align: left; }
-th { background: #f1f5f9; }
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+mat-card {
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+
+.table-container {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  border-radius: 4px;
+}
+
+.mat-mdc-table thead,
+.mat-header-row {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--mat-table-background, #fff);
+}
+
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+@media (max-width: 768px) {
+  .mat-column-descricao,
+  .mat-column-emailUsuario {
+    display: none;
+  }
+
+  th.mat-header-cell, td.mat-cell {
+    padding: 8px 12px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .mat-column-funcionarioResponsavel {
+    display: none;
+  }
+}

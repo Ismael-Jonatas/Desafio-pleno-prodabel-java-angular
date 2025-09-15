@@ -1,10 +1,14 @@
-<nav class="sidebar">
+<nav class="sidebar" [class.collapsed]="collapsed">
+  <button class="sidebar-toggle" type="button" (click)="toggle()" aria-label="Alternar menu">
+    {{ collapsed ? '›' : '‹' }}
+  </button>
+
   <ul>
-    <li><a routerLink="/usuarios">Usuários</a></li>
-    <li><a routerLink="/usuarios/novo">Cadastrar Usuário</a></li>
-    <li><a routerLink="/solicitacoes/novo">Cadastrar Solicitação</a></li>
-    <li><a routerLink="/solicitacoes">Solicitações</a></li>
-    <li><a routerLink="/solicitacoes/atribuir">Atribuir Solicitação</a></li>
-    <li><a routerLink="/atendimentos">Gráfico de Atendimentos</a></li>
+    <li><a routerLink="/usuarios"><span class="label">Usuários</span></a></li>
+    <li><a routerLink="/usuarios/novo"><span class="label">Cadastrar Usuário</span></a></li>
+    <li><a routerLink="/solicitacoes/novo"><span class="label">Cadastrar Solicitação</span></a></li>
+    <li><a routerLink="/solicitacoes"><span class="label">Solicitações</span></a></li>
+    <li><a routerLink="/solicitacoes/atribuir"><span class="label">Atribuir Solicitação</span></a></li>
+    <li><a routerLink="/atendimentos"><span class="label">Gráfico de Atendimentos</span></a></li>
   </ul>
 </nav>

@@ -9,7 +9,7 @@ Permite abertura de solicitações por cidadãos, atribuição a funcionários e
 ## Tecnologias
 
 - **Backend:** Java 17, Spring Boot 3.55, Spring Data JPA, Bean Validation, OpenAPI/Swagger  
-- **Frontend:** Angular 17, TypeScript, RxJS, Ngx-Charts (ou Chart.js)  
+- **Frontend:** Angular 20, TypeScript, RxJS, Ngx-Charts (ou Chart.js)  
 - **Banco de Dados:** PostgreSQL (via Docker)  
 - **Build:** Maven, Node.js  
 - **CI/CD:** GitHub Actions  
