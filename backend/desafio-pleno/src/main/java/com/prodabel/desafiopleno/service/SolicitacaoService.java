@@ -2,10 +2,14 @@ package com.prodabel.desafiopleno.service;
 
 import com.prodabel.desafiopleno.dto.SolicitacaoNovaRequest;
 import com.prodabel.desafiopleno.exception.EmailException;
+import com.prodabel.desafiopleno.exception.FuncionarioException;
+import com.prodabel.desafiopleno.exception.SolicitacaoException;
+import com.prodabel.desafiopleno.model.Funcionario;
 import com.prodabel.desafiopleno.model.Solicitacao;
 import com.prodabel.desafiopleno.model.Usuario;
 import com.prodabel.desafiopleno.repository.SolicitacaoRepository;
 import com.prodabel.desafiopleno.repository.UsuarioRepository;
+import com.prodabel.desafiopleno.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.prodabel.desafiopleno.dto.SolicitacaoResponse;
@@ -21,10 +25,12 @@ public class SolicitacaoService {
 
     private final SolicitacaoRepository solicitacaoRepository;
     private final UsuarioRepository usuarioRepository;
+    private final FuncionarioRepository funcionarioRepository;
 
-    public SolicitacaoService(SolicitacaoRepository solicitacaoRepository, UsuarioRepository usuarioRepository) {
+    public SolicitacaoService(SolicitacaoRepository solicitacaoRepository, UsuarioRepository usuarioRepository, FuncionarioRepository funcionarioRepository) {
         this.solicitacaoRepository = solicitacaoRepository;
         this.usuarioRepository = usuarioRepository;
+        this.funcionarioRepository = funcionarioRepository;
     }
 
     private Solicitacao toSolicitacao(SolicitacaoNovaRequest solicitacaoNovaRequest) {
@@ -51,7 +57,7 @@ public class SolicitacaoService {
 
     private String formatarData(LocalDateTime data) {
         if (data == null) return null;
-        return data.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return data.format(java.time.format.DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
 
     public List<SolicitacaoResponse> listar() {
@@ -98,4 +104,14 @@ public class SolicitacaoService {
         return false;
     }
 
+    @Transactional
+    public SolicitacaoResponse atribuirFuncionario(Long solicitacaoId, Long funcionarioId) {
+        Solicitacao solicitacao = solicitacaoRepository.findById(solicitacaoId)
+                .orElseThrow(() -> new SolicitacaoException("Solicitação não encontrada"));
+        Funcionario funcionario = funcionarioRepository.findById(funcionarioId)
+                .orElseThrow(() -> new FuncionarioException("Funcionário não encontrado"));
+        solicitacao.setFuncionario(funcionario);
+        solicitacaoRepository.save(solicitacao);
+        return toSolicitacaoResponse(solicitacao);
+    }
 }

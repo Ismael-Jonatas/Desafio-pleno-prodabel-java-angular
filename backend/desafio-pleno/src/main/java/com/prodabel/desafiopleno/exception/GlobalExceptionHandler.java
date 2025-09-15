@@ -15,4 +15,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("message", ex.getMessage()));
     }
+
+    @ExceptionHandler(SolicitacaoException.class)
+    public ResponseEntity<Object> handleSolicitacao(SolicitacaoException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("message", ex.getMessage()));
+    }
+
+    @ExceptionHandler(FuncionarioException.class)
+    public ResponseEntity<Object> handleFuncionario(FuncionarioException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("message", ex.getMessage()));
+    }
 }

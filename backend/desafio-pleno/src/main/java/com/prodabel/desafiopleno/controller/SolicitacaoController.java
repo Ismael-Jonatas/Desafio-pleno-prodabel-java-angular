@@ -1,5 +1,6 @@
 package com.prodabel.desafiopleno.controller;
 
+import com.prodabel.desafiopleno.dto.AtribuirFuncionarioRequest;
 import com.prodabel.desafiopleno.dto.SolicitacaoNovaRequest;
 import com.prodabel.desafiopleno.model.Solicitacao;
 import com.prodabel.desafiopleno.service.SolicitacaoService;
@@ -48,6 +49,14 @@ public class SolicitacaoController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/{id}/atribuir")
+    public ResponseEntity<SolicitacaoResponse> atribuirFuncionario(
+            @PathVariable Long id,
+            @RequestBody AtribuirFuncionarioRequest request) {
+        SolicitacaoResponse response = solicitacaoService.atribuirFuncionario(id, request.getFuncionarioId());
+        return ResponseEntity.ok(response);
     }
 }
 
