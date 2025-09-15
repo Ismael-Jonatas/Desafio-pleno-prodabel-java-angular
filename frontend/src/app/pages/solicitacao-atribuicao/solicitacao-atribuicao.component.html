@@ -5,30 +5,42 @@
       <label for="solicitacaoId">Solicitação</label>
       <select id="solicitacaoId" formControlName="solicitacaoId">
         <option value="" disabled selected>Selecione...</option>
-        <option *ngFor="let s of (solicitacoes$ | async)" [value]="s.id">
-          {{ s.id }} - {{ s.titulo }} | {{ s.nomeSolicitante }} | {{ s.dataSolicitacao | date:'shortDate' }}
-        </option>
+        @for (s of (solicitacoes$ | async); track s) {
+          <option [value]="s.id">
+            {{ s.id }} - {{ s.titulo }} | {{ s.nomeSolicitante }} | {{ s.dataSolicitacao | date:'shortDate' }}
+          </option>
+        }
       </select>
-      <span class="erro" *ngIf="form.get('solicitacaoId')?.touched && form.get('solicitacaoId')?.invalid">
-        Selecione uma solicitação.
-      </span>
+      @if (form.get('solicitacaoId')?.touched && form.get('solicitacaoId')?.invalid) {
+        <span class="erro">
+          Selecione uma solicitação.
+        </span>
+      }
     </div>
     <div class="form-field">
       <label for="funcionarioId">Funcionário</label>
       <select id="funcionarioId" formControlName="funcionarioId">
         <option value="" disabled selected>Selecione...</option>
-        <option *ngFor="let f of (funcionarios$ | async)" [value]="f.id">
-          {{ f.nome }} ({{ f.email }})
-        </option>
+        @for (f of (funcionarios$ | async); track f) {
+          <option [value]="f.id">
+            {{ f.nome }} ({{ f.email }})
+          </option>
+        }
       </select>
-      <span class="erro" *ngIf="form.get('funcionarioId')?.touched && form.get('funcionarioId')?.invalid">
-        Selecione um funcionário.
-      </span>
+      @if (form.get('funcionarioId')?.touched && form.get('funcionarioId')?.invalid) {
+        <span class="erro">
+          Selecione um funcionário.
+        </span>
+      }
     </div>
     <div class="acoes">
       <button type="submit" [disabled]="carregando">Atribuir</button>
     </div>
-    <p class="sucesso" *ngIf="sucessoMsg">{{ sucessoMsg }}</p>
-    <p class="erro" *ngIf="erroMsg">{{ erroMsg }}</p>
+    @if (sucessoMsg) {
+      <p class="sucesso">{{ sucessoMsg }}</p>
+    }
+    @if (erroMsg) {
+      <p class="erro">{{ erroMsg }}</p>
+    }
   </form>
 </section>

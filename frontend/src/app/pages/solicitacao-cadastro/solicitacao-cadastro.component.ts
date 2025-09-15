@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { SolicitacaoService } from '../../services/solicitacao.service';
 
 @Component({
   selector: 'app-solicitacao-cadastro',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './solicitacao-cadastro.component.html',
   styleUrl: './solicitacao-cadastro.component.css'
 })

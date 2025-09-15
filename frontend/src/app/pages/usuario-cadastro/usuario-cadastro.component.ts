@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-usuario-cadastro',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './usuario-cadastro.component.html',
   styleUrl: './usuario-cadastro.component.css'
 })

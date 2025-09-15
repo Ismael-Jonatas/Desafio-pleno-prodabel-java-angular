@@ -1,22 +1,27 @@
 <div class="card">
   <h2>Usuários</h2>
-  <table *ngIf="usuarios$ | async as usuarios; else carregando">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Bairro</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let usuario of usuarios">
-        <td>{{ usuario.id }}</td>
-        <td>{{ usuario.nome }}</td>
-        <td>{{ usuario.email }}</td>
-        <td>{{ usuario.bairro }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <ng-template #carregando>Carregando...</ng-template>
+  @if (usuarios$ | async; as usuarios) {
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Bairro</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (usuario of usuarios; track usuario) {
+          <tr>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.bairro }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    Carregando...
+  }
 </div>

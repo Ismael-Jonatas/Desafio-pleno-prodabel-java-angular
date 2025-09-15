@@ -4,36 +4,46 @@
     <div class="form-field">
       <label for="nome">Nome</label>
       <input id="nome" formControlName="nome" />
-      <span class="erro" *ngIf="form.get('nome')?.touched && form.get('nome')?.errors">
-        <ng-container *ngIf="form.get('nome')?.errors?.['required']">
-          Nome é obrigatório.
-        </ng-container>
-        <ng-container *ngIf="form.get('nome')?.errors?.['minlength']">
-          Nome deve ter pelo menos 3 caracteres.
-        </ng-container>
-        <ng-container *ngIf="form.get('nome')?.errors?.['pattern']">
-          Nome deve conter apenas letras.
-        </ng-container>
-    </span>
+      @if (form.get('nome')?.touched && form.get('nome')?.errors) {
+        <span class="erro">
+          @if (form.get('nome')?.errors?.['required']) {
+            Nome é obrigatório.
+          }
+          @if (form.get('nome')?.errors?.['minlength']) {
+            Nome deve ter pelo menos 3 caracteres.
+          }
+          @if (form.get('nome')?.errors?.['pattern']) {
+            Nome deve conter apenas letras.
+          }
+        </span>
+      }
     </div>
     <div class="form-field">
       <label for="email">Email</label>
       <input id="email" formControlName="email" />
-      <span class="erro" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-        Email é obrigatório e deve ser válido.
-      </span>
+      @if (form.get('email')?.touched && form.get('email')?.invalid) {
+        <span class="erro">
+          Email é obrigatório e deve ser válido.
+        </span>
+      }
     </div>
     <div class="form-field">
       <label for="bairro">Bairro</label>
       <input id="bairro" formControlName="bairro" />
-      <span class="erro" *ngIf="form.get('bairro')?.touched && form.get('bairro')?.invalid">
-        Bairro é obrigatório.
-      </span>
+      @if (form.get('bairro')?.touched && form.get('bairro')?.invalid) {
+        <span class="erro">
+          Bairro é obrigatório.
+        </span>
+      }
     </div>
     <div class="acoes">
       <button type="submit" [disabled]="carregando">Cadastrar</button>
     </div>
-    <p class="sucesso" *ngIf="sucessoMsg">{{ sucessoMsg }}</p>
-    <p class="erro" *ngIf="erroMsg">{{ erroMsg }}</p>
+    @if (sucessoMsg) {
+      <p class="sucesso">{{ sucessoMsg }}</p>
+    }
+    @if (erroMsg) {
+      <p class="erro">{{ erroMsg }}</p>
+    }
   </form>
 </section>

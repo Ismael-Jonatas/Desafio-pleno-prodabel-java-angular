@@ -1,30 +1,35 @@
 <div class="card">
   <h2>Solicitações</h2>
-  <table *ngIf="solicitacoes$ | async as solicitacoes; else carregando">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Descrição</th>
-        <th>Bairro</th>
-        <th>Nome do Solicitante</th>
-        <th>E-mail do Solicitante</th>
-        <th>Funcionário Responsável</th>
-        <th>Data da Solicitação</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let s of solicitacoes">
-        <td>{{ s.id }}</td>
-        <td>{{ s.titulo }}</td>
-        <td>{{ s.descricao }}</td>
-        <td>{{ s.bairro }}</td>
-        <td>{{ s.nomeSolicitante }}</td>
-        <td>{{ s.emailUsuario }}</td>
-        <td>{{ s.funcionarioResponsavel }}</td>
-        <td>{{ s.dataSolicitacao }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <ng-template #carregando>Carregando...</ng-template>
+  @if (solicitacoes$ | async; as solicitacoes) {
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Bairro</th>
+          <th>Nome do Solicitante</th>
+          <th>E-mail do Solicitante</th>
+          <th>Funcionário Responsável</th>
+          <th>Data da Solicitação</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (s of solicitacoes; track s) {
+          <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.titulo }}</td>
+            <td>{{ s.descricao }}</td>
+            <td>{{ s.bairro }}</td>
+            <td>{{ s.nomeSolicitante }}</td>
+            <td>{{ s.emailUsuario }}</td>
+            <td>{{ s.funcionarioResponsavel }}</td>
+            <td>{{ s.dataSolicitacao }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    Carregando...
+  }
 </div>
