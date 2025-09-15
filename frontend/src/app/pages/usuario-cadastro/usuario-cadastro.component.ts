@@ -45,7 +45,7 @@ export class UsuarioCadastroComponent {
         this.carregando = false;
       },
       error: (err) => {
-        this.erroMsg = err?.error || 'Erro ao cadastrar usuário.';
+        this.erroMsg = err?.error?.message || 'Erro ao cadastrar usuário.';
         this.carregando = false;
       }
     });

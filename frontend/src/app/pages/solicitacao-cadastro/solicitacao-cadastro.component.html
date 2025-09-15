@@ -1,0 +1,38 @@
+<section class="card">
+  <h2>Cadastro de Solicitação</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-field">
+      <label for="titulo">Título</label>
+      <input id="titulo" formControlName="titulo" />
+      <span class="erro" *ngIf="form.get('titulo')?.touched && form.get('titulo')?.invalid">
+        Título é obrigatório e deve ter pelo menos 3 caracteres.
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="descricao">Descrição</label>
+      <textarea id="descricao" formControlName="descricao"></textarea>
+      <span class="erro" *ngIf="form.get('descricao')?.touched && form.get('descricao')?.invalid">
+        Descrição é obrigatória e deve ter pelo menos 10 caracteres.
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="bairro">Bairro</label>
+      <input id="bairro" formControlName="bairro" />
+      <span class="erro" *ngIf="form.get('bairro')?.touched && form.get('bairro')?.invalid">
+        Bairro é obrigatório.
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="emailUsuario">E-mail do Solicitante</label>
+      <input id="emailUsuario" formControlName="emailUsuario" />
+      <span class="erro" *ngIf="form.get('emailUsuario')?.touched && form.get('emailUsuario')?.invalid">
+        E-mail é obrigatório e deve ser válido.
+      </span>
+    </div>
+    <div class="acoes">
+      <button type="submit" [disabled]="carregando">Cadastrar</button>
+    </div>
+    <p class="sucesso" *ngIf="sucessoMsg">{{ sucessoMsg }}</p>
+    <p class="erro" *ngIf="erroMsg">{{ erroMsg }}</p>
+  </form>
+</section>
