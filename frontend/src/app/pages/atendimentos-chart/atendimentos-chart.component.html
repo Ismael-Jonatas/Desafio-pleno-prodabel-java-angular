@@ -1,0 +1,15 @@
+<div style="height: 420px; position: relative;">
+  <ng-container *ngIf="!loading && !error; else statusTpl">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      chartType="bar">
+    </canvas>
+  </ng-container>
+
+  <ng-template #statusTpl>
+    <div *ngIf="loading">Carregando...</div>
+    <div *ngIf="!loading && error" style="color: #b91c1c">{{ error }}</div>
+  </ng-template>
+</div>
