@@ -32,4 +32,11 @@ export class SolicitacaoService {
   listar(): Observable<Solicitacao[]> {
     return this.http.get<Solicitacao[]>(`${environment.apiUrl}/solicitacoes`);
   }
+
+  atribuir(solicitacaoId: number, funcionarioId: number) {
+    return this.http.post(
+      `${environment.apiUrl}/solicitacoes/${solicitacaoId}/atribuir`,
+      { funcionarioId }
+    );
+  }
 }
